@@ -1,38 +1,51 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Enable loading content from the static folder -->
-        {% load static %}
-        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-        <title>My Search Engine</title>
-    </head>
-    <body>
-        <main class="d-flex container flex-column align-items-center">
-            <a class="logo" href="/">
-                <img src="{% static 'logo.webp' %}" class="mb-4 logo" alt="SO Search Ninja"/>
-            </a>
-            <form id="form-search" class="w-100 d-flex" method="get" action="{% url 'search' %}">
-                <input type="text" name="query" id="query" value="{{ request.GET.query }}" autofocus placeholder="enter a query" autocomplete="off"/>
-                <button class="button" type="submit" id="search" value="Search"><i class="fas fa-search"></i></button>
-            </form>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Enable loading content from the static folder -->
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>My Search Engine</title>
+</head>
+
+<body>
+    <main class="d-flex container flex-column align-items-center">
+        <a class="logo" href="/">
+            <img src="https://play-lh.googleusercontent.com/1-hPxafOxdYpYZEOKzNIkSP43HXCNftVJVttoo4ucl7rsMASXW3Xr6GlXURCubE1tA=w3840-h2160-rw" class="mb-4 logo" alt="SO Search Ninja" />
+        </a>
+        <form id="form-search" class="w-100 d-flex" method="get" action="{% url 'search' %}">
+            <input type="text" name="query" id="query" value="{{ request.GET.query }}" autofocus
+                placeholder="enter a query" autocomplete="off" />
+            <button class="button" type="submit" id="search" value="Search"><i class="fas fa-search"></i></button>
+        </form>
+        <pre>
             {% for result in searchresults %}
             {{ result }}
             {% endfor %}
-        </main>
-        <footer class="footer">
-            <div class="container text-center">
-                <span class="text-muted small">Built by <b>Insert Your Name</b> at TUMO Yerevan<br class="footer-lb"/>, 2023</span>
-            </div>
-        </footer>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
-        <script src="{% static 'search.js'%}"></script>
-    </body>
+        </pre>
+    </main>
+    <footer class="footer">
+        <div class="container text-center">
+            <span class="text-muted small">Built by <b>Insert Your Name</b> at TUMO Yerevan<br class="footer-lb" />,
+                2023</span>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
+    <script src="{% static 'search.js'%}"></script>
+</body>
+
 </html>
