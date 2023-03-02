@@ -1,7 +1,7 @@
 from collections import defaultdict
 from searchindex.preprocessing import preprocess_text
 import xml.etree.ElementTree as ET
-
+import sys
 
 
 class TermDocuments(defaultdict):
@@ -22,7 +22,7 @@ class Index(defaultdict):
 def build_index():
     print('Buiolding index..')
     index = Index()
-    with open ('searchindex/datasets/trec.5000.xml') as f:
+    with open ('searchindex/datasets/test_dataset.xml') as f:
         for _, elem in ET.iterparse(f):
             if elem.tag == 'DOC':
                 docId = elem.find('DOCID').text
@@ -31,6 +31,7 @@ def build_index():
                 index.doc_count += 1
                 for pos, i in enumerate(preprocessed):
                     index[i][docId].append(pos)
+        print("done")
     return index
 
 # Print the contents of the index
@@ -43,3 +44,7 @@ def build_and_print():
         for doc in index[term]:
             index_print.append(f"\t{doc}: {','.join([str(x) for x in sorted(index[term][doc])])}")
     return '\n'.join(index_print)
+
+index = []
+if 'runserver' in sys.argv:
+    index = build_index()

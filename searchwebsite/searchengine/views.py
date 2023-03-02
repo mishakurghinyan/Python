@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from searchindex.preprocessing import preprocess_text
-from searchindex.buildindex import build_and_print
-from searchindex.buildindex import build_index
+from searchindex.query import run_query
 
 # Create your views here.
 
@@ -16,10 +14,7 @@ class Search(generic.ListView):
 
     def get_queryset(self):
         query = self.request.GET['query']
-        index = build_index()
-        query = preprocess_text(query)
-
-        return index[query[0]] or ["No results"]
+        return run_query(query)
 
 
 
