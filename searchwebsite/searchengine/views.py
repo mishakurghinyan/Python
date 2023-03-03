@@ -1,6 +1,8 @@
+from xml.dom.minidom import Document
 from django.shortcuts import render
 from django.views import generic
 from searchindex.query import run_query
+from searchengine.models import Document
 
 # Create your views here.
 
@@ -14,8 +16,7 @@ class Search(generic.ListView):
 
     def get_queryset(self):
         query = self.request.GET['query']
-        return run_query(query)
-
-
-
-        #Build the index by calling the build_index function (you need to import it from build_index.py)
+        results = run_query(query)
+        docs = [Document.objects.get(doc_id = doc_id).text for doc_id in results]
+        return docs or ['No Results']
+    

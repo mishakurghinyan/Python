@@ -1,5 +1,6 @@
 from searchindex.buildindex import index
 from searchindex.preprocessing import preprocess_text
+import re
 
 
 def listToString(s):
@@ -15,10 +16,12 @@ def listToString(s):
     return str1
 
 def run_query(query):
-    
+
+    match = "#(\d+)\((\w+), (\w+)\)"
     frstprt = []
     scndprt = []
     spl = query.split()
+    
     if ' AND NOT ' in query:
         frstprt, scndprt = query.split(' AND NOT ')
         frstprt = preprocess_text(frstprt)[0]
@@ -26,10 +29,7 @@ def run_query(query):
         frstprt = index[frstprt]
         scndprt = index[scndprt]  
         result = [i for i in frstprt if i not in scndprt]
-        if query:
-            return result or ['Chka']
-        else: 
-            return ['Chka']
+        return result
 
     elif ' AND ' in query:
         frstprt, scndprt = query.split(' AND ')
@@ -38,10 +38,7 @@ def run_query(query):
         frstprt = index[frstprt]
         scndprt = index[scndprt]  
         result = [i for i in frstprt if i in scndprt]
-        if query:
-            return (result) or ['Chka']
-        else: 
-            return ['Chka']
+        return result
     
     
 
@@ -66,10 +63,7 @@ def run_query(query):
             if i not in results2:
                 notresult2.append(i)   
         
-        
-        for i in notresult2:
-            if i not in results1_ids:
-                results1_ids.append(i)
+        results1_ids = [i for i in notresult2 if i not in results1_ids]
         return results1_ids
 
 
@@ -93,10 +87,63 @@ def run_query(query):
         scndprt = preprocess_text(scndprt)[0]  
         res1 = index[frstprt]
         res2 = index[scndprt]
+        res1.update(res2)
         
-        if query:
-            return (res1) or ['Chka']
-        else: 
-            return ['Chka']
+        return res1
+    
+    elif query.startswith('"') and query.endswith('"'):
+        word1,word2 = query.split(" ")
 
+        word1 = preprocess_text(word1)[0]
+        word2 = preprocess_text(word2)[0]
+
+        results = set()
+        res1 = index[word1]
+
+        for id in res1:
+            pos1 = index[word1][id]
+            pos2 = index[word2][id]
+            locResults = [i for i in pos1 if i + 1 in pos2]
+            if locResults:
+                results.add(id)
+        return results
+
+    elif re.match(match, query):
+        
+        m = re.match(match, query)
+        num = int(m.group(1))
+        word1 = m.group(2)
+        word2 = m.group(3)
+        word1 = preprocess_text(word1)[0]
+        word2 = preprocess_text(word2)[0]
+        
+        result = set()
+        res1 = index[word1]
+        
+        for id in res1:
+            cur = 0
+            while cur <= num:
+                pos1 = index[word1][id]
+                pos2 = index[word2][id]
+                locResults = [i for i in pos1 if i + cur in pos2]
+                if locResults:
+                    result.add(id)
+                cur += 1
+            cur = 0
+            while cur <= num:
+                pos1 = index[word1][id]
+                pos2 = index[word2][id]
+                locResults = [i for i in pos1 if i - cur in pos2]
+                if locResults:
+                    result.add(id)
+                cur += 1
+        return result
+
+    else: 
+        frstprt = preprocess_text(query)
+        if frstprt:
+            frstprt = frstprt[0]
+            return index[frstprt]
+        else:
+            return []
     
