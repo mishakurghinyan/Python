@@ -1,7 +1,27 @@
 from searchindex.buildindex import index
 from searchindex.preprocessing import preprocess_text
 import re
+from collections import defaultdict
+from math import log10
 
+def run_ranked_search(query):
+    results = defaultdict(float)
+
+    query_preproc = preprocess_text(query)
+    
+    for term in query_preproc:
+        if term in index:
+            for doc_id in index[term]:
+                
+                tf = len(index[term][doc_id])
+                df = index[term].doc_freq
+
+                w = (1 + log10(tf)) * log10(index.doc_count / df)
+
+                results[doc_id] += w
+    print(sorted(results, key=results.get, reverse=True))
+    return sorted(results, key=results.get, reverse=True)
+    
 
 def listToString(s):
  
@@ -138,12 +158,20 @@ def run_query(query):
                     result.add(id)
                 cur += 1
         return result
+    else:
+        return run_ranked_search(query) 
 
-    else: 
-        frstprt = preprocess_text(query)
-        if frstprt:
-            frstprt = frstprt[0]
-            return index[frstprt]
-        else:
-            return []
+    # else: 
+    #     frstprt = preprocess_text(query)
+    #     if frstprt:
+    #         frstprt = frstprt[0]
+    #         return index[frstprt]
+    #     else:
+    #         return []
     
+
+    
+    # for word in prep:
+    #     wrd = index[word]
+    #     for i in wrd:
+    #         W_t_d = (1 + math.log10(index[word])) * math.log10(index.doc_count / index[word].doc_freq)
