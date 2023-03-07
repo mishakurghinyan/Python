@@ -20,9 +20,10 @@ def load_dataset():
             idx = 1
             fixture.write("[")
             for _, elem in ET.iterparse(f):
-                if elem.tag == "DOC":
-                    doc_id = elem.find("DOCID").text
-                    text = elem.find("TEXT").text.strip()
+                if elem.tag == "row":
+                    doc_id = elem.attrib["Id"]
+                    text = elem.attrib["Body"].strip()
+                    title = elem.attrib['Title'].strip()
                     
                     if idx > 1:
                         fixture.write(",")
@@ -32,7 +33,8 @@ def load_dataset():
                         'pk': idx,
                         'fields': {
                             'doc_id': doc_id,
-                            'text': text
+                            'text': text,
+                            'title': title
                         }
                     }
 

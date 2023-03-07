@@ -1,3 +1,3 @@
 clear
-python load_dataset.py test_dataset
+python load_dataset.py chess
 python manage.py runserver

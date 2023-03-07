@@ -22,11 +22,11 @@ class Index(defaultdict):
 def build_index():
     print('Buiolding index..')
     index = Index()
-    with open ('searchindex/datasets/test_dataset.xml') as f:
+    with open ('searchindex/datasets/chess.xml') as f:
         for _, elem in ET.iterparse(f):
-            if elem.tag == 'DOC':
-                docId = elem.find('DOCID').text
-                text = elem.find('TEXT').text
+            if elem.tag == "row":
+                docId = elem.attrib["Id"]
+                text = elem.attrib["Body"].strip()
                 preprocessed = preprocess_text(text)
                 index.doc_count += 1
                 for pos, i in enumerate(preprocessed):

@@ -126,3 +126,6 @@ a:hover {
         line-height: 20px;
     }
 }
+main table * {
+    width: 700px;
+}

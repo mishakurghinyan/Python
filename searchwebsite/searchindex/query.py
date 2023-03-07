@@ -19,8 +19,7 @@ def run_ranked_search(query):
                 w = (1 + log10(tf)) * log10(index.doc_count / df)
 
                 results[doc_id] += w
-    print(sorted(results, key=results.get, reverse=True))
-    return sorted(results, key=results.get, reverse=True)
+    return sorted(results, key=results.get, reverse=True)[:50]
     
 
 def listToString(s):
@@ -161,17 +160,3 @@ def run_query(query):
     else:
         return run_ranked_search(query) 
 
-    # else: 
-    #     frstprt = preprocess_text(query)
-    #     if frstprt:
-    #         frstprt = frstprt[0]
-    #         return index[frstprt]
-    #     else:
-    #         return []
-    
-
-    
-    # for word in prep:
-    #     wrd = index[word]
-    #     for i in wrd:
-    #         W_t_d = (1 + math.log10(index[word])) * math.log10(index.doc_count / index[word].doc_freq)
