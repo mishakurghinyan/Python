@@ -13,8 +13,7 @@
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    <link rel="stylesheet" type="text/css" href="./CSSs/style.css">
-    <title>My Search Engine</title>
+    <title>Cup of Chess</title>
 </head>
 
 <body>
@@ -25,16 +24,24 @@
         </a>
         <form id="form-search" class="w-100 d-flex" method="get" action="{% url 'search' %}">
             <input type="text" name="query" id="query" value="{{ request.GET.query }}" autofocus
-                placeholder="enter a query" autocomplete="off" />
+                placeholder="enter a query" autocomplete="off" data-url="{%url 'complete'%}" />
             <button class="button" type="submit" id="search" value="Search"><i class="fas fa-search"></i></button>
         </form>
-            <table class='table'>
-                {% for result in searchresults %}
-                <tr>
-                    <td> {{ result |safe }} </td>
-                </tr> 
-                {% endfor %}
-            </table>
+        {% if searchresults %}
+        <div class="results">
+            <p> About {{ numResults }} results found</p>
+        </div>
+        <div class="results">
+            <p> It took {{ ms }} ms</p>
+        </div>
+
+        <table class='table'>
+            {% for result in searchresults %}
+            <tr>
+                <td> {{ result |safe }} </td>
+            </tr> 
+            {% endfor %}
+        </table>
         <br />
         <nav class="content">
             <ul class="pagination">
@@ -64,10 +71,11 @@
                 <li class="page-item disabled"><a class="page-link" href="#">&rsaquo;</a></li>
                 {% endif %}
                 {% if page_obj.paginator.num_pages > 5%}
-                    <li class="page-item disabled"> <a class="page-link" href="#">...</a></li>
+                <li class="page-item disabled"> <a class="page-link" href="#">...</a></li>
                 {% endif %}
             </ul>
         </nav>
+        {% endif %}
     </main>
     <footer class="footer">
         <div class="container text-center">
@@ -83,6 +91,7 @@
     <script
         src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
     <script src="{% static 'search.js'%}"></script>
+    <script src="{% static 'script.js' %}"></script>
 </body>
 
 </html>

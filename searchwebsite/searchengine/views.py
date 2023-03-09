@@ -4,6 +4,9 @@ from django.views import generic
 from searchindex.query import run_query
 from searchengine.models import Document
 from searchindex.preprocessing import preprocess_text
+from searchindex.query_completion import complete_query
+from django.http import JsonResponse
+import time
 # Create your views here.
 
 class Index(generic.TemplateView):
@@ -13,17 +16,28 @@ class Search(generic.ListView):
     template_name = "search.html"
     paginate_by = 10
     context_object_name = "searchresults"
+    numResults = 0
+    ms = 0
 
 
 
     def get_queryset(self):
         query = self.request.GET['query']
+        start = time.time()
         results = run_query(query)
+        self.ms = format(time.time() - start, '.3f')
+        self.numResults = len(results)
         docs = [Document.objects.get(doc_id = doc_id) for doc_id in results]
         result = []
         for doc in docs:
-            result.append(format_doc(doc, query))       
+            result.append(format_doc(doc))       
         return result
+    
+    def get_context_data(self, **kwargs: any) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        context['numResults'] = self.numResults
+        context['ms'] = self.ms
+        return context
 
 def summ(text, query):
     sentences = []
@@ -38,5 +52,10 @@ def summ(text, query):
                 doc_result += f'{sentence}.'
                 break
     return doc_result
-def format_doc(doc, query):
-    return f'<h5><a href = "https://chess.stackexchange.com/questions/{doc.doc_id}">{doc.title}</a></h5>'
+def format_doc(doc):
+    return f'<h5><a href = "https://chess.stackexchange.com/questions/{doc.doc_id}">{doc.title}</a></h5> <span class="query">{doc.text}</span>'
+
+def complete(request):
+    query = request.GET['q']
+    completions = complete_query(query)
+    return JsonResponse(completions, safe=False)
