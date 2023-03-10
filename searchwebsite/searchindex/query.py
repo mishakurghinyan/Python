@@ -1,3 +1,4 @@
+from os import fsdecode
 from searchindex.buildindex import index
 from searchindex.preprocessing import preprocess_text
 import re
@@ -42,7 +43,7 @@ def run_query(query):
     spl = query.split()
     
     if ' AND NOT ' in query:
-        frstprt, scndprt = query.split(' AND NOT ')
+        frstprt, scndprt = query.split('AND NOT')
         frstprt = preprocess_text(frstprt)[0]
         scndprt = preprocess_text(scndprt)[0]
         frstprt = index[frstprt]
@@ -51,19 +52,19 @@ def run_query(query):
         return result
 
     elif ' AND ' in query:
-        frstprt, scndprt = query.split(' AND ')
+        frstprt, scndprt = query.split('AND')
         frstprt = preprocess_text(frstprt)[0]
         scndprt = preprocess_text(scndprt)[0]
         frstprt = index[frstprt]
         scndprt = index[scndprt]  
+        print("LOG, AND", frstprt, scndprt)
         result = [i for i in frstprt if i in scndprt]
         return result
     
     
 
     elif " OR NOT " in query:
-        word1, word2 = query.split(" OR NOT ")
-
+        word1, word2 = query.split("OR NOT")
         word1 = preprocess_text(word1)[0]
         word2 = preprocess_text(word2)[0]
 
@@ -95,11 +96,13 @@ def run_query(query):
             frstprt.append(spl[i])
             i += 1
         while i < len(spl):
+
             if spl[i] == "OR":
                 i += 1
                 break
             scndprt.append(spl[i])
             i += 1
+        
         frstprt = listToString(frstprt)
         frstprt = preprocess_text(frstprt)[0]
         scndprt = listToString(scndprt)
