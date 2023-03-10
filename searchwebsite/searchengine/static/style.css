@@ -1,23 +1,18 @@
 html {
     --so-orange: #f48024;
-    height: 100%;
+    height: 100vw;
 }
 
 body {
-    min-height: 100%;
+    min-height: 100vh;
     display: grid;
     grid-template-rows: 1fr auto;
 }
 
-@media only screen and (min-width: 768px) {
-    main {
-        max-width: 650px !important;
-    }
-}
-
 main {
-    margin: auto;
-    margin-top: 5%;
+    width: 49%;
+    margin-left: 1%;
+    margin-top: 1%;
 }
 
 #results-table, #results-table td, #results-table th {
@@ -32,7 +27,7 @@ input#query {
     text-indent: 15px;
     outline: none;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 5px;
 }
 
 .button {
@@ -59,16 +54,15 @@ a:hover {
     background-color: #f5f5f5;
     line-height: 35px;
 }
+.all{
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
 
 .score {
     width: 60px;
     line-height: 15px;
 }
-
-.logo {
-    margin-right: 12%;
-}
-
 .result-link {
     font-size: 1.1rem;
 }
@@ -95,7 +89,8 @@ a:hover {
 }
 
 .logo {
-    width: 300px;
+    width: 150px;
+    margin-left: -5%;
 }
 
 .page-number-of {
@@ -106,12 +101,13 @@ a:hover {
     display: none;
 }
 
+
 @media only screen and (max-width: 576px) {
     .logo {
-        width: 220px;
+        width: 50px;
     }
     .button {
-        width: 80px;
+        width: 40px;
     }
     .page-number {
         display: none;
@@ -127,5 +123,49 @@ a:hover {
     }
 }
 main table * {
-    width: 700px;
+    width: 100vw;
+    height: 100vh;
+}
+.flexed {
+    display: flex;
+    align-items:flex-start;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+}
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:80%;
+}
+.imgs {
+    display: flex;
+    flex-wrap: wrap;
+    width:49%;
+    height:100%;
+    margin-right: 1%;
+}
+.imgs img {
+    width: auto;
+    height: auto;
+    max-width: 300px;
+    height: 300px;
+}
+.all {
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.nav {
+    display: flex;
+    justify-content: center;
+    width:100%;
+}
+.allscrpt {
+    width:100vw;
+    display: flex;
+    justify-content: center;
+    height: auto;
 }

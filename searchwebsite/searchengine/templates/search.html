@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Enable loading content from the static folder -->
     {% load static %}
-    <link rel="shortcut icon" type="image/png" href="./IMGs/phpmeXx6V.png" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'cup of chess.png' %}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
@@ -17,72 +17,97 @@
 </head>
 
 <body>
-    <main class="d-flex container flex-column align-items-center">
-        <a class="logo" href="/">
-            <img src="https://play-lh.googleusercontent.com/1-hPxafOxdYpYZEOKzNIkSP43HXCNftVJVttoo4ucl7rsMASXW3Xr6GlXURCubE1tA=w3840-h2160-rw"
-                class="mb-4 logo" alt="SO Search Ninja" />
-        </a>
-        <form id="form-search" class="w-100 d-flex" method="get" action="{% url 'search' %}">
-            <input type="text" name="query" id="query" value="{{ request.GET.query }}" autofocus
-                placeholder="enter a query" autocomplete="off" data-url="{%url 'complete'%}" />
-            <button class="button" type="submit" id="search" value="Search"><i class="fas fa-search"></i></button>
-        </form>
+    <div class="all">
+        <div class="form">
+            <a class="logo" href="/">
+                <img src="{% static 'cup of chess-ai.svg' %}" width="150px" height="150px" class="mb-4 logo"
+                    alt="SO Search Ninja" />
+            </a>
+            <form id="form-search" class="w-100 d-flex" method="get" action="{% url 'search' %}">
+                <input type="text" name="query" id="query" value="{{ request.GET.query }}" autofocus
+                    placeholder="how to play chess.." autocomplete="off" data-url="{%url 'complete'%}" />
+                <button class="button" type="submit" id="search" value="Search"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="allscrpt">
         {% if searchresults %}
-        <div class="results">
-            <p> About {{ numResults }} results found</p>
+            
+            <div class="found-results">
+                <p> | About {{ numResults }} results found |</p>
+            </div>
+            <div class="duration">
+                <p> | It took {{ ms }} ms |</p>
+            </div>
+        
+            {% endif %}
+            {% if correction %}
+            <div class="correct">
+                <a href="?query={{ correction |urlencode}}">Did you mean: {{ correction }}</a>
+            </div>
+        
+            {% endif %}
         </div>
-        <div class="results">
-            <p> It took {{ ms }} ms</p>
-        </div>
+        <main class="flexed">
 
-        <table class='table'>
-            {% for result in searchresults %}
-            <tr>
-                <td> {{ result |safe }} </td>
-            </tr> 
-            {% endfor %}
-        </table>
-        <br />
-        <nav class="content">
-            <ul class="pagination">
-                {% if page_obj.has_previous %}
-                <li class="page-item"><a class="page-link"
-                        href="?query={{ request.GET.query|urlencode }}&page={{page_obj.previous_page_number}}">&lsaquo;</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled"><a class="page-link" href="#">&lsaquo;</a></li>
-                {% endif %}
-                <li class="page-item page-number-of disabled"><a class="page-link" href="#">Page {{page_obj.number}} of
-                        {{page_obj.paginator.num_pages}}</a></li>
-                {% for i in page_obj.paginator.page_range %}
-                {% if page_obj.number == i %}
-                <li class="page-item page-number active"><a class="page-link"
-                        href="?query={{ request.GET.query|urlencode }}&page={{i}}">{{i}}</a></li>
-                {% else %}
-                <li class="page-item page-number"><a class="page-link"
-                        href="?query={{ request.GET.query|urlencode }}&page={{i}}">{{i}}</a></li>
-                {% endif %}
+            
+            <div class='table'>
+                {% for result in searchresults %}
+                <div>
+                    <p> {{ result |safe }} </p>
+                </div> 
                 {% endfor %}
-                {% if page_obj.has_next %}
-                <li class="page-item"><a class="page-link"
-                        href="?query={{ request.GET.query|urlencode }}&page={{ page_obj.next_page_number}}">&rsaquo;</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled"><a class="page-link" href="#">&rsaquo;</a></li>
-                {% endif %}
-                {% if page_obj.paginator.num_pages > 5%}
-                <li class="page-item disabled"> <a class="page-link" href="#">...</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% endif %}
-    </main>
+            </div>
+            <br />
+
+        </main>
+        <div class="imgs">
+            
+        </div>
+        {% if searchresults %}
+        <div class = "nav">
+    <nav class="content">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link"
+                    href="?query={{ request.GET.query|urlencode }}&page={{page_obj.previous_page_number}}">&lsaquo;</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">&lsaquo;</a></li>
+            {% endif %}
+            <li class="page-item page-number-of disabled"><a class="page-link" href="#">Page {{page_obj.number}} of
+                    {{page_obj.paginator.num_pages}}</a></li>
+            {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+            <li class="page-item page-number active"><a class="page-link"
+                    href="?query={{ request.GET.query|urlencode }}&page={{i}}">{{i}}</a></li>
+            {% else %}
+            <li class="page-item page-number"><a class="page-link"
+                    href="?query={{ request.GET.query|urlencode }}&page={{i}}">{{i}}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link"
+                    href="?query={{ request.GET.query|urlencode }}&page={{ page_obj.next_page_number}}">&rsaquo;</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">&rsaquo;</a></li>
+            {% endif %}
+            {% if page_obj.paginator.num_pages > 5%}
+            <li class="page-item disabled"> <a class="page-link" href="#">...</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+    {% endif %}
     <footer class="footer">
         <div class="container text-center">
-            <span class="text-muted small">Built by <b>Insert Your Name</b> at TUMO Yerevan<br class="footer-lb" />,
+            <span class="text-muted small">Built by <b>Misha Kurghinyan</b> at TUMO Gyumri<br class="footer-lb" />,
                 2023</span>
         </div>
     </footer>
+    </div>
+    
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"

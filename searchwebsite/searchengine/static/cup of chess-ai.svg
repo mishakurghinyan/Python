@@ -1,0 +1,74 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" width="2000" height="2000">
+	<title>cup of chess-ai-svg</title>
+	<defs>
+		<linearGradient id="g1" x1="658.1" y1="844.1" x2="1528.9" y2="844.1" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#c28637"/>
+			<stop offset="1" stop-color="#5b4f29"/>
+		</linearGradient>
+		<linearGradient id="g2" x1="556.3" y1="285.9" x2="1479.3" y2="285.9" gradientUnits="userSpaceOnUse">
+			<stop offset=".1" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#a1a1a1"/>
+		</linearGradient>
+		<linearGradient id="g3" x1="523.4" y1="422.7" x2="1784" y2="422.7" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#000000"/>
+		</linearGradient>
+		<linearGradient id="g4" x1="505.3" y1="471.4" x2="1979.7" y2="471.4" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#000000"/>
+		</linearGradient>
+		<linearGradient id="g5" x1="667.9" y1="1687.7" x2="2208.3" y2="1687.7" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#000000"/>
+		</linearGradient>
+		<linearGradient id="g6" x1="557" y1="517.8" x2="2174.7" y2="517.8" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#000000"/>
+		</linearGradient>
+		<linearGradient id="g7" x1="199.7" y1="755.5" x2="2080.1" y2="755.5" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#b77142"/>
+			<stop offset=".5" stop-color="#875533"/>
+			<stop offset="1" stop-color="#564026"/>
+		</linearGradient>
+	</defs>
+	<style>
+		.s0 { fill: url(#g1) } 
+		.s1 { fill: #5b493d } 
+		.s2 { fill: #b3b3b3;stroke: #000000 } 
+		.s3 { fill: url(#g2);stroke: #000000 } 
+		.s4 { fill: url(#g3);stroke: #000000 } 
+		.s5 { fill: url(#g4);stroke: #000000 } 
+		.s6 { fill: url(#g5);stroke: #000000 } 
+		.s7 { fill: url(#g6);stroke: #000000 } 
+		.s8 { fill: url(#g7) } 
+	</style>
+	<g id="Layer 5">
+	</g>
+	<g id="cup">
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="s0" d="m1018.1 1569.2c-200.4 0-362.5-162.1-362.5-362.6 0-200.5 162.1-362.5 362.5-362.5 200.5 0 362.6 162 362.6 362.5 0 200.5-162.1 362.6-362.6 362.6z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m1063.7 1283.7h-89.5c1.9 69.8-26.9 128.9-66.3 179h220.3c-42.7-52.4-65.6-111.5-64.5-179z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m1018 1140.6c-47.9 0-86.7-38.8-86.7-86.8 0-48 38.8-86.8 86.7-86.8 48 0 86.8 38.8 86.8 86.8 0 48-38.8 86.8-86.8 86.8z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m969.8 1253.3h96.7l14.1-21.5h-125.2z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m1052.1 1149.5h-68.2c-2.7 0-5.3-2.4-5.3-5.4 0-3 2.6-5.3 5.3-5.3h68.2c3 0 5.4 2.3 5.4 5.3 0 3-2.4 5.4-5.4 5.4z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m951.7 1158.8c0-1.2 1-2.2 2.2-2.2h128.3c1.2 0 2.2 1 2.2 2.2v10c0 1.2-1 2.2-2.2 2.2h-128.3c-1.2 0-2.2-1-2.2-2.2z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m1066.5 1178.2h-96.7l-14.4 21.6h125.2z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m870.3 1503.6c0-4.8 3.9-8.6 8.6-8.6h278.2c4.8 0 8.6 3.8 8.6 8.6v40c0 4.8-3.8 8.6-8.6 8.6h-278.2c-4.7 0-8.6-3.8-8.6-8.6z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m951.7 1264.5c0-1.2 1-2.1 2.1-2.1h128.5c1.1 0 2.1 0.9 2.1 2.1v9.9c0 1.2-1 2.1-2.1 2.1h-128.5c-1.1 0-2.1-0.9-2.1-2.1z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m926 1209.4c0-1.5 1.2-2.7 2.7-2.7h178.9c1.5 0 2.7 1.2 2.7 2.7v12.7c0 1.5-1.2 2.7-2.7 2.7h-178.9c-1.5 0-2.7-1.2-2.7-2.7z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m877.5 1472.6c0-1.5 1.2-2.7 2.7-2.7h275.7c1.4 0 2.7 1.2 2.7 2.7v12.5c0 1.5-1.3 2.7-2.7 2.7h-275.7c-1.5 0-2.7-1.2-2.7-2.7z"/>
+			<path id="&lt;Path&gt;" class="s1" d="m877.5 1564c0-1.5 1.2-2.7 2.7-2.7h275.7c1.4 0 2.7 1.2 2.7 2.7v12.4c0 1.5-1.3 2.7-2.7 2.7h-275.7c-1.5 0-2.7-1.2-2.7-2.7z"/>
+			<g id="&lt;Group&gt;">
+				<path id="&lt;Path&gt;" class="s2" d="m814 676.9l-25.3 8.5c-3.9 1.4-8.1-0.7-9.5-4.6l-206.2-601.7c-1.1-4 1-8.4 4.9-9.6l25.1-8.8c3.9-1.1 8.3 1 9.5 4.7l206.1 602c1.4 3.9-0.7 8.1-4.6 9.5z"/>
+				<path id="&lt;Path&gt;" class="s3" d="m1479.3 422.7h-923l19.8-112.7c2.3-13.9 14.3-24.1 28.5-24.1h823.4c13.9 0 26 10 28.8 23.9z"/>
+				<path id="&lt;Path&gt;" class="s4" d="m1510.1 471.4h-983.2l-3-14.8c-2.3-11.6 2.3-23.9 12.3-30.4 3-2.1 6.5-3.5 9.9-3.5h939.2c2.8 0 5.6 0.5 8.1 1.2 13.9 3.9 22 18.1 19.5 32z"/>
+				<path id="&lt;Path&gt;" class="s5" d="m1530.3 517.8h-1025c8.1-4 15.1-20.4 21.6-46.4h983.2q0.9 35.7 20.2 46.4z"/>
+				<g id="&lt;Group&gt;">
+					<path id="&lt;Path&gt;" class="s6" d="m667.9 1687.7l22.2 235.3c1 7.9 7.7 13.9 15.6 13.9h616.3c7.9 0 14.6-6 15.6-14.1l21.3-235.1z"/>
+					<path id="&lt;Path&gt;" class="s7" d="m1466 517.8q-40.3 0-80.4 0-414.4 0-828.6 0 11.4 118.9 22.5 237.7h864.7z"/>
+				</g>
+			</g>
+			<path id="&lt;Compound Path&gt;" fill-rule="evenodd" class="s8" d="m1444.2 755.5l-85.3 932.2h-691l-88.4-932.2zm-113.1 451.1c0-173.3-140.1-313.4-313.4-313.4-173.3 0-313.4 140.1-313.4 313.4 0 173.3 140.1 313.4 313.4 313.4 173.3 0 313.4-140.1 313.4-313.4z"/>
+		</g>
+	</g>
+</svg>
