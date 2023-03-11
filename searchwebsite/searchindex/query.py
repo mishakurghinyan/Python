@@ -1,10 +1,11 @@
 from os import fsdecode
+from xml.dom.minidom import Document
 from searchindex.buildindex import index
 from searchindex.preprocessing import preprocess_text
 import re
 from collections import defaultdict
 from math import log10
-
+from searchengine.models import Document
 def run_ranked_search(query):
     results = defaultdict(float)
 
@@ -16,8 +17,8 @@ def run_ranked_search(query):
                 
                 tf = len(index[term][doc_id])
                 df = index[term].doc_freq
-
-                w = (1 + log10(tf)) * log10(index.doc_count / df)
+                if (tf != 0) and (df != 0):
+                    w = (1 + log10(tf)) * log10(index.doc_count / df)
 
                 results[doc_id] += w
     return sorted(results, key=results.get, reverse=True)[:50]
@@ -76,10 +77,11 @@ def run_query(query):
             results1_ids.append(i)
 
         notresult2 = []
-        for i in range(1, index.doc_count + 1):
+        # for i in range(1, index.doc_count + 1):
+        for i in Document.objects.values_list('doc_id')[:50]:
             # The doc ids in the index are strings 
             # but range gives us integers
-            i = str(i)
+            i = str(i[0])
             if i not in results2:
                 notresult2.append(i)   
         
@@ -147,7 +149,7 @@ def run_query(query):
             while cur <= num:
                 pos1 = index[word1][id]
                 pos2 = index[word2][id]
-                locResults = [i for i in pos1 if i + cur in pos2]
+                locResults = [i for i in pos1 if (i + cur) in pos2]
                 if locResults:
                     result.add(id)
                 cur += 1
@@ -155,7 +157,7 @@ def run_query(query):
             while cur <= num:
                 pos1 = index[word1][id]
                 pos2 = index[word2][id]
-                locResults = [i for i in pos1 if i - cur in pos2]
+                locResults = [i for i in pos1 if (i - cur) in pos2]
                 if locResults:
                     result.add(id)
                 cur += 1

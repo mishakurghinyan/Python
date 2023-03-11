@@ -23,7 +23,7 @@ main {
 input#query {
     margin-right: 5px;
     height: 40px;
-    border:1px solid green;
+    border:1px solid rgb(92, 48, 23);
     text-indent: 15px;
     outline: none;
     width: 100%;
@@ -31,13 +31,13 @@ input#query {
 }
 
 .button {
-    width:100px;
+    width:70px;
     height: 42px;
-    background: green;
+    background: rgb(92, 48, 23);
     border:0px;
     color:white;
     cursor:pointer;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 a {
@@ -89,7 +89,6 @@ a:hover {
 }
 
 .logo {
-    width: 150px;
     margin-left: -5%;
 }
 
@@ -169,3 +168,4 @@ main table * {
     justify-content: center;
     height: auto;
 }
+
